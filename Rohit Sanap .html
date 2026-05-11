@@ -1,0 +1,503 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rohit Sanap – Home Loan & Client Support</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1f40;
+      --navy-light: #162d5a;
+      --gold: #c9a227;
+      --gold-light: #e8c45a;
+      --cream: #faf7f0;
+      --white: #ffffff;
+      --text: #1a1a2e;
+      --muted: #5a6478;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 6%;
+      background: rgba(13,31,64,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201,162,39,0.25);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; color: var(--white);
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 600; font-size: 0.88rem;
+      padding: 10px 22px; border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--gold-light); transform: scale(1.04); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 55%, #1a3a6e 100%);
+      display: flex; align-items: center;
+      padding: 120px 6% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a227' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-content { position: relative; max-width: 640px; animation: fadeUp 0.9s ease both; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(201,162,39,0.18);
+      border: 1px solid rgba(201,162,39,0.4);
+      color: var(--gold-light);
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 16px; border-radius: 50px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero p {
+      font-size: 1.1rem; line-height: 1.8;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 40px; max-width: 500px;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold);
+      color: var(--navy); font-weight: 700; font-size: 1rem;
+      padding: 15px 32px; border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 4px 24px rgba(201,162,39,0.35);
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,162,39,0.45); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.3);
+      color: var(--white); font-weight: 600; font-size: 1rem;
+      padding: 13px 30px; border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── STATS STRIP ── */
+    .stats {
+      background: var(--navy);
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 0;
+      border-bottom: 2px solid rgba(201,162,39,0.2);
+    }
+    .stat-item {
+      padding: 28px 48px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      animation: fadeUp 0.8s ease both;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; color: var(--gold);
+      display: block;
+    }
+    .stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      text-align: center; margin-bottom: 56px;
+    }
+    .section-title .overline {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--navy);
+    }
+    .section-title .divider {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      margin: 16px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ── SERVICES ── */
+    .services-section {
+      padding: 96px 6%;
+      background: var(--cream);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 36px 28px;
+      border: 1px solid rgba(13,31,64,0.07);
+      transition: all 0.35s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(13,31,64,0.1); }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-icon {
+      width: 58px; height: 58px;
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .service-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── WHY US ── */
+    .why-section {
+      padding: 80px 6%;
+      background: var(--navy);
+    }
+    .why-section .section-title h2 { color: var(--white); }
+    .why-section .section-title .overline { color: var(--gold); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px; max-width: 900px; margin: 0 auto;
+    }
+    .why-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(201,162,39,0.2);
+      border-radius: 16px;
+      padding: 28px 22px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .why-card:hover { background: rgba(201,162,39,0.1); border-color: var(--gold); }
+    .why-icon { font-size: 2rem; margin-bottom: 12px; }
+    .why-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+    .why-card p { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+
+    /* ── CONTACT SECTION ── */
+    .contact-section {
+      padding: 96px 6%;
+      background: var(--cream);
+    }
+    .contact-box {
+      max-width: 700px; margin: 0 auto;
+      background: var(--white);
+      border-radius: 24px;
+      padding: 56px 48px;
+      border: 1px solid rgba(13,31,64,0.08);
+      box-shadow: 0 20px 60px rgba(13,31,64,0.08);
+      text-align: center;
+    }
+    .contact-avatar {
+      width: 90px; height: 90px;
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; color: var(--gold);
+      margin: 0 auto 20px;
+    }
+    .contact-box h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; color: var(--navy); margin-bottom: 4px;
+    }
+    .contact-box .role { color: var(--gold); font-weight: 500; font-size: 1rem; margin-bottom: 32px; }
+    .contact-info-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 14px;
+      margin-bottom: 36px;
+    }
+    .contact-info-list li {
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px; font-size: 1rem; color: var(--muted);
+    }
+    .contact-info-list li .ic {
+      width: 38px; height: 38px;
+      background: var(--cream);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    /* ── WHATSAPP BUTTON ── */
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #25d366;
+      color: #fff; font-weight: 700; font-size: 1.1rem;
+      padding: 18px 42px; border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 6px 28px rgba(37,211,102,0.4);
+      transition: all 0.3s;
+      margin-bottom: 12px;
+    }
+    .wa-btn:hover {
+      background: #1ebe5d;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(37,211,102,0.5);
+    }
+    .wa-btn svg { width: 24px; height: 24px; fill: white; flex-shrink: 0; }
+    .wa-note { font-size: 0.82rem; color: var(--muted); }
+
+    .cities {
+      display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+      margin-top: 28px;
+    }
+    .city-tag {
+      background: rgba(13,31,64,0.07);
+      color: var(--navy); font-size: 0.82rem; font-weight: 600;
+      padding: 6px 16px; border-radius: 50px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 28px 6%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    footer p { font-size: 0.82rem; color: rgba(255,255,255,0.4); }
+    .footer-tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; color: var(--gold);
+      font-size: 0.95rem;
+    }
+    .footer-badges {
+      display: flex; gap: 20px; flex-wrap: wrap;
+    }
+    .footer-badges span {
+      font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;
+      color: rgba(255,255,255,0.35); font-weight: 500;
+    }
+
+    /* ── FLOATING WA ── */
+    .float-wa {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 60px; height: 60px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+      text-decoration: none;
+      animation: pulse 2.5s infinite;
+    }
+    .float-wa svg { width: 32px; height: 32px; fill: white; }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+      50% { box-shadow: 0 4px 36px rgba(37,211,102,0.8); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .stat-item { padding: 20px 24px; }
+      .contact-box { padding: 40px 24px; }
+      nav { padding: 14px 5%; }
+      .hero { padding: 100px 5% 70px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Rohit <span>Sanap</span></div>
+  <a href="https://wa.me/919850911950?text=Hello%20Rohit%20Sir%2C%20I%20am%20interested%20in%20Home%20Loan%20services.%20Please%20contact%20me." target="_blank" class="nav-cta">💬 WhatsApp करा</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🏠 Home Loan & Client Support</div>
+    <h1>We Make Home Loans <em>Simple & Fast</em></h1>
+    <p>Partnering with Builders to provide end-to-end loan solutions and client support for faster deal conversions and happy customers.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/919850911950?text=Hello%20Rohit%20Sir%2C%20I%20am%20interested%20in%20Home%20Loan%20services.%20Please%20contact%20me." target="_blank" class="btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Free Loan Consultation
+      </a>
+      <a href="#services" class="btn-secondary">आमच्या सेवा पहा ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label">Happy Customers</span></div>
+  <div class="stat-item"><span class="stat-num">15+</span><span class="stat-label">Bank Partners</span></div>
+  <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">Cities Served</span></div>
+  <div class="stat-item"><span class="stat-num">24hr</span><span class="stat-label">Fast Approvals</span></div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="section-title">
+    <span class="overline">What We Do</span>
+    <h2>Services We Provide</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">✅</div>
+      <h3>Home Loan Eligibility Check</h3>
+      <p>Quick eligibility analysis to help your customers plan better.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏦</div>
+      <h3>Multiple Bank Options</h3>
+      <p>We compare multiple banks to get the best interest rate and terms.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <h3>Fast Loan Processing</h3>
+      <p>Quick documentation and strong follow-up for faster approvals.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📄</div>
+      <h3>Documentation Support</h3>
+      <p>Complete guidance and support for all loan documents.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>CIBIL Guidance</h3>
+      <p>CIBIL check, improvement tips and better profile planning.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🤝</div>
+      <h3>Customer Counselling</h3>
+      <p>We explain loan, EMI options and help customers make the right decision.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔑</div>
+      <h3>Deal Closing Assistance</h3>
+      <p>We support your sales team in answering loan related queries and closing deals.</p>
+    </div>
+    <div class="service-card" style="background: linear-gradient(135deg, var(--navy), var(--navy-light)); border-color: transparent;">
+      <div class="service-icon" style="background: rgba(201,162,39,0.2);">🏠</div>
+      <h3 style="color: var(--white);">Your Sales, Our Support</h3>
+      <p style="color: var(--gold-light); font-weight: 500;">Happy Customers · Better Conversions</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="section-title">
+    <span class="overline">Why Choose Us</span>
+    <h2>Why Work With Us?</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🎯</div>
+      <h4>Better Conversion</h4>
+      <p>More bookings closed successfully</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🕐</div>
+      <h4>Timely Follow-up</h4>
+      <p>Regular updates on every case</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">👔</div>
+      <h4>Professional Handling</h4>
+      <p>Expert client management</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📈</div>
+      <h4>End-to-End Support</h4>
+      <p>From application to disbursal</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-title">
+    <span class="overline">Get In Touch</span>
+    <h2>Contact Us</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="contact-box">
+    <div class="contact-avatar">R</div>
+    <h2>Rohit Sanap</h2>
+    <p class="role">Property Loan & Client Support</p>
+
+    <ul class="contact-info-list">
+      <li>
+        <span class="ic">📞</span>
+        <a href="tel:+919850911950" style="color: var(--navy); text-decoration: none; font-weight: 500;">+91 9850911950</a>
+      </li>
+      <li>
+        <span class="ic">✉️</span>
+        <a href="mailto:Rohitsanap555@gmail.com" style="color: var(--navy); text-decoration: none; font-weight: 500;">Rohitsanap555@gmail.com</a>
+      </li>
+      <li>
+        <span class="ic">📍</span>
+        <span style="color: var(--navy); font-weight: 500;">Nashik / Pune / Mumbai</span>
+      </li>
+    </ul>
+
+    <!-- WHATSAPP BUTTON -->
+    <a href="https://wa.me/919850911950?text=Hello%20Rohit%20Sir%2C%20I%20am%20interested%20in%20Home%20Loan%20services.%20Please%20guide%20me." target="_blank" class="wa-btn">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp वर संपर्क करा
+    </a>
+    <p class="wa-note">बटण दाबल्यावर WhatsApp उघडेल आणि आपोआप message तयार होईल ✅</p>
+
+    
